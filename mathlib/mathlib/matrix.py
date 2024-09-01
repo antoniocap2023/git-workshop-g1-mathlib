@@ -36,15 +36,33 @@ class Matrix:
 
 
     # TODO: Person 1 - Implement matrix outer product (__matmul__)
+    def __matmul__(self, other):
+        """
+        Multiply a m x 1 column vector by a 1 x n row vector, resulting in a m x n matrix.
+        """
+        # vertical x horizontal 
+        if len(self.data[0]) == len(other.data):
+            return Matrix([[sum(self.data[i][k] * other.data[k][j] for k in range(len(self.data[0]))) 
+                            for j in range(len(other.data[0]))] 
+                            for i in range(len(self.data))])
+        # horizontal x vertical 
+        elif len(self.data) == len(other.data[0]):
+            return Matrix([[sum(self.data[k][i] * other.data[j][k] for k in range(len(self.data))) 
+                            for j in range(len(other.data))] 
+                            for i in range(len(self.data[0]))])
+        else:
+            return "Invalid sizes!"
+        
 
-    # TODO: Person 2 - Implement matrix transposition (transpose)
 
-    # TODO: Person 1 & 2 - Implement determinant calculation (determinant)
+    # TODO: Person 1 - Implement matrix transposition (transpose)
+
+    # TODO: Person 2 - Implement determinant calculation (determinant)
     # Either code together or have one person code and the other review
     # If coding together, use pair programming & co-author the commit (git commit -m "message" -m "Co-authored-by: name <email>")
     # If reviewing, leave comments on what you think can be improved
 
-    # TODO: Person 1 & 2 - Implement inverse calculation (inverse)
+    # TODO: Person 2 - Implement inverse calculation (inverse)
     # Either code together or have one person code and the other review
     # ...
 
@@ -52,4 +70,4 @@ class Matrix:
 
     # TODO: Person 3 - Implement a function that concatenates two matrices vertically (vconcat)
 
-    # TODO: Person 3 & 4 - Implement matrix eigenvalues and eigenvectors (eigen)
+    # TODO: Person 1, 2, 3 - Implement matrix eigenvalues and eigenvectors (eigen)
