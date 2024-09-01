@@ -75,8 +75,25 @@ class Matrix:
         return inverse_matrix 
 
 
+    def __matmul__(self, other):
+        """
+        Multiply a m x 1 column vector by a 1 x n row vector, resulting in a m x n matrix.
+        """
+        # vertical x horizontal 
+        if len(self.data[0]) == len(other.data):
+            return Matrix([[sum(self.data[i][k] * other.data[k][j] for k in range(len(self.data[0]))) 
+                            for j in range(len(other.data[0]))] 
+                            for i in range(len(self.data))])
+        # horizontal x vertical 
+        elif len(self.data) == len(other.data[0]):
+            return Matrix([[sum(self.data[k][i] * other.data[j][k] for k in range(len(self.data))) 
+                            for j in range(len(other.data))] 
+                            for i in range(len(self.data[0]))])
+        else:
+            return "Invalid sizes!"
+        
 
-    # TODO: Person 1 - Implement matrix outer product (__matmul__)
+
 
     # TODO: Person 1 - Implement matrix transposition (transpose)
 
@@ -93,4 +110,3 @@ class Matrix:
 
     # TODO: Person 3 - Implement a function that concatenates two matrices vertically (vconcat)
 
-    # TODO: Person 1 & 3 & 4 - Implement matrix eigenvalues and eigenvectors (eigen)
