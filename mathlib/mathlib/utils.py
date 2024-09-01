@@ -5,7 +5,14 @@ def validate_matrix(matrix):
     :return: True if valid, raises ValueError otherwise.
     """
     # TODO: Person 4 - Implement matrix validation logic
-    pass
+    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
+        raise ValueError("The matrix must be a list of lists.")
+
+    # Check if all rows have the same length
+    if not all(len(row) == len(matrix[0]) for row in matrix):
+        raise ValueError("All rows in the matrix must have the same length.")
+
+    return True
 
 def check_dimensions(matrix1, matrix2):
     """
@@ -15,7 +22,15 @@ def check_dimensions(matrix1, matrix2):
     :return: True if dimensions are compatible, raises ValueError otherwise.
     """
     # TODO: Person 4 - Implement dimension check logic
-    pass
+    # To be added, want the number of rows and the number of columns to match
+    if len(matrix1) == len(matrix2) and len(matrix1[0]) == len(matrix2[0]):
+        return True
+    if len(matrix1[0]) == len(matrix2):
+        return True
+    if len(matrix1) == len(matrix1[0]):
+        return True
+    raise ValueError("Matrices have incompatible dimensions for addition or multiplication.")
+
 
 def identity_matrix(size):
     """
@@ -34,7 +49,7 @@ def zero_matrix(rows, cols):
     :return: Zero matrix as a 2D list.
     """
     # TODO: Person 4 - Implement zero matrix creation
-    pass
+    return [[0.0 for _ in range(cols)] for _ in range(rows)]
 
 def minor(matrix, row, col):
     """
@@ -59,5 +74,9 @@ def cofactor(matrix):
     # TODO: Person 3 & Person 4 - Implement cofactor calculation
     # Either code together or have one person code and the other review
     # ...
-    pass
+    cofactor_mat = []
+    for i in range(len(matrix)):
+        row = []
+        for j in range(len(matrix))
+    
 
