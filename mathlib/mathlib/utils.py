@@ -24,7 +24,8 @@ def identity_matrix(size):
     :return: Identity matrix as a 2D list.
     """
     # TODO: Person 4 - Implement identity matrix creation
-    pass
+    return [[1 if i == j else 0 for j in range(size)] for i in range(size)]
+
 
 def zero_matrix(rows, cols):
     """
